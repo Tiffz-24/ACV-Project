@@ -72,10 +72,10 @@ def load_datasets(test_x,test_y, train_x, train_y, valid_x,valid_y, transform=No
 
     return test_dataset, train_dataset, validation_dataset
 
-def load_dataloaders(test_dataset, train_dataset, validation_dataset, batch_size = 64, shuffle = True):
+def load_dataloaders(test_dataset, train_dataset, validation_dataset, batch_size = 64, num_workers = 4, shuffle = True):
     
-    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle)
-    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle)
-    validation_dataloader = DataLoader(validation_dataset, batch_size=batch_size, shuffle=shuffle)
+    test_dataloader = DataLoader(test_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+    train_dataloader = DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
+    validation_dataloader = DataLoader(validation_dataset, batch_size=batch_size, shuffle=shuffle, num_workers=num_workers)
     
     return test_dataloader, train_dataloader, validation_dataloader
