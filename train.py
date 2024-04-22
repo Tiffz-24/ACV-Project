@@ -67,6 +67,7 @@ def validate(model, dataloader, criterion):
     
     with torch.no_grad():  # Turn off gradients for validation, saves memory and computations
         for x, y in dataloader:
+            print(y)
             if torch.cuda.is_available():
                 x, y = x.cuda(), y.cuda()
             output = model(x)
