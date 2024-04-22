@@ -48,8 +48,7 @@ def train_one_epoch(model, epoch, dataloader, criterion, optimizer, scheduler):
         (final_loss, final_acc, epoch)
     )
     return final_loss, final_acc, model
-
-
+    
 def validate(model, dataloader, criterion):
     """
     Validate the model with the validation set
@@ -62,24 +61,31 @@ def validate(model, dataloader, criterion):
         avg_loss: flot
         avg_accuracy: float
     """
-    model.eval()  # Set the model to evaluation mode
+    model.eval()
+    outputs = []
+    labels = []
     total_loss, total_correct, total = 0, 0, 0
     
-    with torch.no_grad():  # Turn off gradients for validation, saves memory and computations
+    with torch.no_grad():
         for x, y in dataloader:
-            print(y)
             if torch.cuda.is_available():
                 x, y = x.cuda(), y.cuda()
             output = model(x)
             loss = criterion(output, y.squeeze())
+            outputs.append(output.softmax(dim=-1)[:, 1])  # Assuming binary classification for AUROC
+            labels.append(y.squeeze())
+            
             prediction = torch.argmax(output, -1)
             total_loss += loss.item() * len(y)
             total_correct += (prediction == y.squeeze()).sum().item()
             total += len(y)
-            
+    
     avg_loss = total_loss / total
     avg_accuracy = total_correct / total
-    return avg_loss, avg_accuracy
+    outputs = torch.cat(outputs).cpu()
+    labels = torch.cat(labels).cpu()
+    return avg_loss, avg_accuracy, outputs, labels
+
 
 
 def train(model, num_epochs, train_dataloader, val_dataloader, criterion, optimizer, scheduler=None):
