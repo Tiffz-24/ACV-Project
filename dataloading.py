@@ -4,14 +4,11 @@ from PIL import Image
 import os
 import csv
 from tqdm.notebook import tqdm
+from torch.utils.data import Dataset
 
-class PCamDataset(torch.utils.data.Dataset):
+class PCamDataset(Dataset):
     """
-    Configured the dataset
-    Input:
-        torch Dataset
-    Output:
-        Dataset of PCam data
+    Dataset class for PCam data
     """
 
     def __init__(self, examples, transform=None):
@@ -29,14 +26,18 @@ class PCamDataset(torch.utils.data.Dataset):
         return len(self.examples)
 
 def load_train_data(pcam_directory, split):
-
     """
-    Loads data into ___
+    Splits train data into train/validation. Returns a dictionary mapping ids to labels and train and validation images.
 
     Inputs:
         pcam_directory: str
         split: float
             train/test split
+    Ouputs:
+        label_mapping: dict
+            Maps image ids to label
+        train_fps: list
+        val_fps: list
     """
     label_mapping = {}
     with open(os.path.join(pcam_directory, 'train_labels.csv'), 'r') as f:
@@ -76,6 +77,23 @@ def load_train_data(pcam_directory, split):
     return label_mapping, train_fps, val_fps
 
 def get_dataloders(pcam_directory, train_transforms, val_transforms, batch_size = 32, split=0.8):
+    """
+    Loads data into dataset and dataloader objects for train and validation. Splits as given
+
+    Inputs:
+        pcam_directory: str
+        train_transforms: torch Transform
+        val_transforms: torch Transform
+        batch_size: int
+            Defaults to 32
+        split: float
+            train/test split. Defaults to 0.8
+    Ouputs:
+        tr_ds: PCAMDataset
+        val_ds: PCamDataset
+        tr_dl: torch Dataloader
+        val_dl: torch Dataloader
+    """
     label_mapping, train_fps, val_fps = load_train_data(pcam_directory, split)
     tr_ds, val_ds = PCamDataset(train_fps, transform=train_transforms), PCamDataset(val_fps, transform=val_transforms)
     tr_dl, val_dl = (

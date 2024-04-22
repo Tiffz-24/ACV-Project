@@ -12,9 +12,9 @@ def train_one_epoch(model, epoch, dataloader, criterion, optimizer, scheduler):
         model: Torch.NN module
         epoch: int
         dataloader: Torch.Dataloader
-        criterion: 
-        optimizer: 
-        scheduler:
+        criterion: torch Criterion
+        optimizer: torch Optimizer
+        scheduler: torch Scheduler
     
     Outputs:
         final loss: float
@@ -57,7 +57,7 @@ def validate(model, dataloader, criterion):
     Inputs:
         model: torch.nn
         dataloader: Dataloader
-        criterion:
+        criterion: torch Criterion
     Outputs: 
         avg_loss: flot
         avg_accuracy: float
@@ -89,9 +89,9 @@ def train(model, num_epochs, train_dataloader, val_dataloader, criterion, optimi
         model: Torch.NN module
         num_epochs: int
         dataloader: Torch.Dataloader
-        criterion: 
-        optimizer: 
-        scheduler:
+        criterion: torch Criterion
+        optimizer: torch Optimizer
+        scheduler: torch Scheduler
             Defaults to None
     
     Outputs:
