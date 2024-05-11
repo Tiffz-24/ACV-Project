@@ -2,6 +2,7 @@
 import random
 from PIL import Image
 import torch
+import torch.nn.functional as F
 from tqdm.notebook import tqdm
 
 class PCamDataset(torch.utils.data.Dataset):
