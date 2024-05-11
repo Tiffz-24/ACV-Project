@@ -34,3 +34,23 @@ reconstructGAN.ipynb
 
 ### Model 3: Transfer Learning using BigGAN
 BigGAN_PCam.ipynb
+
+### Group Responsibilities
+
+Costanza
+- Preprocessing: downloading and preprocessing dataset (checking classes, etc), dataset classes, data visualization
+- Training: Conditional GAN, Reconstructive Conditional GAN (both run, but have issues with memory and GPU), some help with BigGAN
+- Pipeline flowchart, test results tables
+- Wrote explanations for the CGAN and RCGAN Methods, Analysis
+
+Tiff:
+- Preprocessing: gaussian blurring, cropping, etc. code, data visualization, DeepFocus testing code, also help with checking classes in preprocessing
+- Training: CNNs, ResNets, beginner GAN (not included in final report due to not significant results)
+- Wrote plotting code
+- Introduction, Conclusion, Methods Overview
+
+Cindy:
+- BigGAN (not currently functioning)
+- BigGAN methods
+- ReadME file
+
