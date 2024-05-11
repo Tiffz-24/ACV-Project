@@ -16,13 +16,13 @@ test2.ipynb
 
 
 ## GAN Models
-Pipleline for GAN models
+Pipleline for GAN models: <br>
 <img width="385" alt="Screenshot 2024-05-10 at 11 25 17 PM" src="https://github.com/Tiffz-24/ACV-Project/assets/32231363/aac56685-3f40-4ec4-a006-4d43f9f916d1">
 
 ### Dataset
 PCGAN_Dataset.py
 
-## Preprocessing
+### Preprocessing
 deepfocus_and_blurring.ipynb
 deepfocus.py
 
