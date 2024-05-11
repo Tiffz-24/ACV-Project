@@ -1,7 +1,7 @@
 # ACV-Project
 
 ## Project Overview
-Metastatic tissue clasificantion and generation using the PatchCamelyon (PCAM) dataset.
+Metastatic tissue classification and generation using the PatchCamelyon (PCAM) dataset.
 
 
 ## Resnet/CNN
